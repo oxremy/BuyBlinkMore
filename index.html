@@ -42,9 +42,8 @@
           <div class="column">
             <p>Buy BlinkMore for $1.99!</p>
             <button id="buyButton">Purchase Now</button>
-          
             <script>
-              const stripe = Stripe('pk_live_51R1oiPELTNSIiBR0sNBZNLWFWT0vSg60w97Zs2DGfdLpRXxjs5QDDqTsRJFnUtEQJAEBCyzNxJUMSrGf7JCDTA1b00Dmy5DLwk');
+              const stripe = Stripe('pk_live_51R1oiPELTNSIiBR0sNBZNLWFWT0vSg60w97Zs2DGfdLpRXxjs5QDDqTsRJFnUtEQJAEBCyzNxJUMSrGf7JCDTA1b00Dmy5DLwk'); // Replace with your live publishable key
               document.getElementById('buyButton').addEventListener('click', async () => {
                 try {
                   console.log('Fetching Checkout session...');
