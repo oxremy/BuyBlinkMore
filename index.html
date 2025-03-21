@@ -42,9 +42,24 @@
             <h1 class="title is-1">
               BlinkMore
             </h1>
-            <h2 class="subtitle">
-              BlinkMore is a macOS menu bar application that helps reduce eye strain by fading your screen when you stare at it for too long without blinking. It uses automated eye-tracking and has option to only turn on eye tracking when using certain apps.
-            </h2>
+            <button id="buy-button">Buy Now - $1.99</button>
+            <script>
+              const stripe = Stripe('pk_test_51R1oiPELTNSIiBR007T2sEVIWIBAksi8wwabEpiqaWZ2hmRRrgSGCYArk2xX5aA6F9jm4YdD8FwaFcI3zTjwvjJK00o4HTG9nR'); // Replace with your Publishable Key
+              const buyButton = document.getElementById('buy-button');
+          
+              buyButton.addEventListener('click', () => {
+                stripe.redirectToCheckout({
+                  lineItems: [{ price: 'prod_RyLBKFbd17PgBn', quantity: 1 }], // Replace with your Price ID
+                  mode: 'payment',
+                  successUrl: 'https://oxremy.github.io/BuyBlinkMore/success.html', // Success page
+                  cancelUrl: 'https://oxremy.github.io/BuyBlinkMore/cancel.html',   // Cancel page
+                }).then(result => {
+                  if (result.error) {
+                    alert(result.error.message);
+                  }
+                });
+              });
+            </script>
           </div>
         </div>
       </div>
