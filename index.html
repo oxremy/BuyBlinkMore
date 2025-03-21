@@ -39,25 +39,20 @@
         </div>
         <div class="columns has-text-centered">
           <div class="column">
-            <h1 class="title is-1">
-              BlinkMore
-            </h1>
-            <button id="buy-button">Buy Now - $1.99</button>
-            <script>
-              const stripe = Stripe('pk_test_51R1oiPELTNSIiBR007T2sEVIWIBAksi8wwabEpiqaWZ2hmRRrgSGCYArk2xX5aA6F9jm4YdD8FwaFcI3zTjwvjJK00o4HTG9nR'); // Replace with your Publishable Key
-              const buyButton = document.getElementById('buy-button');
+            <h1>BlinkMore</h1>
+            <p>Buy BlinkMore for $1.99!</p>
+            <button id="buyButton">Purchase Now</button>
           
-              buyButton.addEventListener('click', () => {
-                stripe.redirectToCheckout({
-                  lineItems: [{ price: 'prod_RyLBKFbd17PgBn', quantity: 1 }], // Replace with your Price ID
-                  mode: 'payment',
-                  successUrl: 'https://oxremy.github.io/BuyBlinkMore/success.html', // Success page
-                  cancelUrl: 'https://oxremy.github.io/BuyBlinkMore/cancel.html',   // Cancel page
-                }).then(result => {
-                  if (result.error) {
-                    alert(result.error.message);
-                  }
+            <script>
+              const stripe = Stripe('pk_live_51R1oiPELTNSIiBR0sNBZNLWFWT0vSg60w97Zs2DGfdLpRXxjs5QDDqTsRJFnUtEQJAEBCyzNxJUMSrGf7JCDTA1b00Dmy5DLwk'); // Replace with your Stripe Publishable Key
+              document.getElementById('buyButton').addEventListener('click', async () => {
+                const response = await fetch('https://e6gzanjnxb.execute-api.us-east-2.amazonaws.com/', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ priceId: 'prod_RvgI2ZTgDtnbFr' })
                 });
+                const session = await response.json();
+                stripe.redirectToCheckout({ sessionId: session.id });
               });
             </script>
           </div>
