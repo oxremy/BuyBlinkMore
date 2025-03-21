@@ -46,10 +46,10 @@
             <script>
               const stripe = Stripe('pk_live_51R1oiPELTNSIiBR0sNBZNLWFWT0vSg60w97Zs2DGfdLpRXxjs5QDDqTsRJFnUtEQJAEBCyzNxJUMSrGf7JCDTA1b00Dmy5DLwk'); // Replace with your Stripe Publishable Key
               document.getElementById('buyButton').addEventListener('click', async () => {
-                const response = await fetch('https://e6gzanjnxb.execute-api.us-east-2.amazonaws.com/', {
+                const response = await fetch('https://e6gzanjnxb.execute-api.us-east-2.amazonaws.com/create-checkout-session', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ priceId: 'prod_RyLBKFbd17PgBn' })
+                  body: JSON.stringify({ priceId: 'price_1R4OUhELTNSIiBR0hbxeWfoq' })
                 });
                 const session = await response.json();
                 stripe.redirectToCheckout({ sessionId: session.id });
