@@ -49,7 +49,7 @@
                 const response = await fetch('https://e6gzanjnxb.execute-api.us-east-2.amazonaws.com/', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ priceId: 'prod_RvgI2ZTgDtnbFr' })
+                  body: JSON.stringify({ priceId: 'prod_RyLBKFbd17PgBn' })
                 });
                 const session = await response.json();
                 stripe.redirectToCheckout({ sessionId: session.id });
