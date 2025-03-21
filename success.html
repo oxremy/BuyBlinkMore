@@ -4,10 +4,18 @@
   <h1>Thank You!</h1>
   <p><a id="downloadLink" href="#">Download BlinkMore</a></p>
   <script>
-    fetch('https://e6gzanjnxb.execute-api.us-east-2.amazonaws.com/')
-      .then(res => res.json())
+    fetch('https://e6gzanjnxb.execute-api.us-east-2.amazonaws.com/generate-signed-url')
+      .then(res => {
+        if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+        return res.json();
+      })
       .then(data => {
+        console.log('Download URL:', data.downloadUrl);
         document.getElementById('downloadLink').href = data.downloadUrl;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to get download link. Check console.');
       });
   </script>
 </body>
